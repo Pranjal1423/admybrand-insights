@@ -4,7 +4,8 @@ import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Target, Plus, Play, Pause, BarChart3 } from 'lucide-react';
+import { DataTable } from '@/components/tables/DataTable';
+import { Plus, Pause, Play, BarChart3 } from 'lucide-react';
 
 export default function CampaignsPage() {
   const campaigns = [
@@ -162,28 +163,8 @@ export default function CampaignsPage() {
           ))}
         </div>
 
-        {/* Campaign Performance Summary */}
-        <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border-gray-200/50 dark:border-gray-700/50">
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <Target className="h-5 w-5 mr-2 text-indigo-600" />
-              Campaign Performance Summary
-            </CardTitle>
-            <CardDescription>
-              Overview of all campaign metrics and performance
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="h-64 flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-950/20 dark:to-purple-950/20 rounded-lg">
-              <div className="text-center">
-                <Target className="h-12 w-12 text-indigo-400 mx-auto mb-4" />
-                <p className="text-gray-500 dark:text-gray-400">
-                  Detailed campaign analytics coming in Phase 3
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        {/* Advanced Data Table */}
+        <DataTable />
       </div>
     </DashboardLayout>
   );
