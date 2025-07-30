@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { BarChart3, Users, DollarSign, TrendingUp, Target } from "lucide-react"
 
 export default function HomePage() {
@@ -20,9 +21,11 @@ export default function HomePage() {
             AI-Powered Analytics Dashboard for Digital Marketing Agencies
           </p>
           
-          <button className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold shadow-lg transition-all duration-200 hover:shadow-xl transform hover:scale-105">
-            View Dashboard →
-          </button>
+          <Link href="/dashboard">
+            <button className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold shadow-lg transition-all duration-200 hover:shadow-xl transform hover:scale-105">
+              View Dashboard →
+            </button>
+          </Link>
         </div>
 
         {/* Metrics Cards */}

@@ -12,7 +12,7 @@ export const APP_CONFIG = {
 export const NAV_ITEMS: NavItem[] = [
   {
     title: 'Overview',
-    href: '/',
+    href: '/dashboard',
     icon: 'BarChart3',
   },
   {
