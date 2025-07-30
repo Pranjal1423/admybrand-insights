@@ -1,5 +1,8 @@
 'use client';
 
+import { RevenueChart } from '@/components/charts/RevenueChart';
+import { TrafficChart } from '@/components/charts/TrafficChart';
+import { PerformanceChart } from '@/components/charts/PerformanceChart';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -104,121 +107,85 @@ export default function DashboardPage() {
           })}
         </div>
 
-        {/* Charts Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Revenue Chart Placeholder */}
-          <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border-gray-200/50 dark:border-gray-700/50">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <BarChart3 className="h-5 w-5 mr-2 text-indigo-600" />
-                Revenue Trends
-              </CardTitle>
-              <CardDescription>
-                Monthly revenue performance over time
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="h-64 flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-950/20 dark:to-purple-950/20 rounded-lg">
-                <div className="text-center">
-                  <BarChart3 className="h-12 w-12 text-indigo-400 mx-auto mb-4" />
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Interactive chart coming in Phase 3
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+        {/* Interactive Charts Section */}
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+          {/* Revenue Chart */}
+          <RevenueChart />
 
-          {/* Traffic Sources Placeholder */}
+          {/* Traffic Sources Chart */}
+          <TrafficChart />
+        </div>
+
+          {/* Performance Chart - Full Width */}
+          <PerformanceChart />
+          {/* Remove stray CardDescription/CardHeader/CardContent/Card tags to fix JSX */}
+
+          {/* Recent Activity */}
           <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border-gray-200/50 dark:border-gray-700/50">
             <CardHeader>
               <CardTitle className="flex items-center">
-                <PieChart className="h-5 w-5 mr-2 text-purple-600" />
-                Traffic Sources
+                <Activity className="h-5 w-5 mr-2 text-green-600" />
+                Recent Activity
               </CardTitle>
               <CardDescription>
-                Breakdown of traffic by source
+                Latest updates and campaign changes
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="h-64 flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 rounded-lg">
-                <div className="text-center">
-                  <PieChart className="h-12 w-12 text-purple-400 mx-auto mb-4" />
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Interactive chart coming in Phase 3
-                  </p>
-                </div>
+              <div className="space-y-4">
+                {[
+                  {
+                    id: 1,
+                    action: 'Campaign "Summer Sale" was activated',
+                    time: '2 minutes ago',
+                    type: 'success',
+                  },
+                  {
+                    id: 2,
+                    action: 'New user registration milestone reached',
+                    time: '1 hour ago',
+                    type: 'info',
+                  },
+                  {
+                    id: 3,
+                    action: 'Campaign "Black Friday" budget updated',
+                    time: '3 hours ago',
+                    type: 'warning',
+                  },
+                  {
+                    id: 4,
+                    action: 'Monthly report generated successfully',
+                    time: '1 day ago',
+                    type: 'success',
+                  },
+                ].map((activity) => (
+                  <div key={activity.id} className="flex items-center space-x-4 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                    <div className={`w-2 h-2 rounded-full ${
+                      activity.type === 'success' ? 'bg-green-500' :
+                      activity.type === 'warning' ? 'bg-yellow-500' :
+                      'bg-blue-500'
+                    }`} />
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-900 dark:text-white">
+                        {activity.action}
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                        {activity.time}
+                      </p>
+                    </div>
+                    <Badge variant={
+                      activity.type === 'success' ? 'default' :
+                      activity.type === 'warning' ? 'secondary' :
+                      'outline'
+                    }>
+                      {activity.type}
+                    </Badge>
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
         </div>
-
-        {/* Recent Activity */}
-        <Card className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border-gray-200/50 dark:border-gray-700/50">
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <Activity className="h-5 w-5 mr-2 text-green-600" />
-              Recent Activity
-            </CardTitle>
-            <CardDescription>
-              Latest updates and campaign changes
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {[
-                {
-                  id: 1,
-                  action: 'Campaign "Summer Sale" was activated',
-                  time: '2 minutes ago',
-                  type: 'success',
-                },
-                {
-                  id: 2,
-                  action: 'New user registration milestone reached',
-                  time: '1 hour ago',
-                  type: 'info',
-                },
-                {
-                  id: 3,
-                  action: 'Campaign "Black Friday" budget updated',
-                  time: '3 hours ago',
-                  type: 'warning',
-                },
-                {
-                  id: 4,
-                  action: 'Monthly report generated successfully',
-                  time: '1 day ago',
-                  type: 'success',
-                },
-              ].map((activity) => (
-                <div key={activity.id} className="flex items-center space-x-4 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
-                  <div className={`w-2 h-2 rounded-full ${
-                    activity.type === 'success' ? 'bg-green-500' :
-                    activity.type === 'warning' ? 'bg-yellow-500' :
-                    'bg-blue-500'
-                  }`} />
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-900 dark:text-white">
-                      {activity.action}
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
-                      {activity.time}
-                    </p>
-                  </div>
-                  <Badge variant={
-                    activity.type === 'success' ? 'default' :
-                    activity.type === 'warning' ? 'secondary' :
-                    'outline'
-                  }>
-                    {activity.type}
-                  </Badge>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
     </DashboardLayout>
   );
 }
